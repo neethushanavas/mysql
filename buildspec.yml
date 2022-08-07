@@ -1,0 +1,15 @@
+version: 0.2
+phases:
+  pre_build:
+    commands:
+      - echo login into ecr
+      - $(aws ecr get-login --no-include-email --region $AWS_DEFAULT_REGION)
+  build:
+    commands:
+      - echo building images from dockerhub
+      - docker build -t new .
+      - docker tag new 534083940564.dkr.ecr.us-east-1.amazonaws.com/nginxapp
+  post_build:
+    commands:
+      - echo pushing image
+      - docker push 534083940564.dkr.ecr.us-east-1.amazonaws.com/nginxapp

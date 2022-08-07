@@ -1,0 +1,10 @@
+version: 0.0
+os: linux
+files:
+  - source: /doc
+    destination: /root/apps
+hooks:
+ ApplicationStart:
+  - location: /doc/start.sh
+    timeout: 3000
+    runas: root
